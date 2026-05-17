@@ -29,9 +29,9 @@ context:
 # LLM configuration
 llm:
   # Choose your provider: "openai" or "anthropic"
-  provider: "anthropic"
-  model: "claude-3-7-sonnet-20250219"
-  temperature: 0.7  # Controls randomness in responses (0.0 = deterministic, 1.0 = creative)
+  provider: "openai"
+  model: "gpt-4o-mini"
+  temperature: 1.0  # Controls randomness in responses (0.0 = deterministic, 1.0 = creative)
   max_tokens: 1000  # Maximum tokens in response (null = use model default)
   
   # OpenAI examples:

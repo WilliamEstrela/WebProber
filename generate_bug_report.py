@@ -1,26 +1,26 @@
 import os
 from dotenv import load_dotenv
-from anthropic import Anthropic
+from openai import OpenAI
 from analyze_agent_run import analyze_agent_run
 
 def generate_bug_report(log_file: str) -> str:
     # Load environment variables
     load_dotenv()
     
-    # Initialize the Anthropic client
-    client = Anthropic()
+    # Initialize the OpenAI client
+    client = OpenAI()
     
     # Generate the analysis messages
     messages = analyze_agent_run(log_file)
     
-    # Get the analysis from Claude
-    response = client.messages.create(
-        model="claude-3-7-sonnet-20250219",
+    # Get the analysis from OpenAI
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
         max_tokens=1024,
         messages=messages
     )
     
-    return response.content[0].text
+    return response.choices[0].message.content
 
 if __name__ == "__main__":
 

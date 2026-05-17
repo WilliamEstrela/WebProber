@@ -107,11 +107,9 @@ class AgentRunAnalyzer:
                 base64_data = base64.b64encode(img_byte_arr).decode('utf-8')
                 
                 return {
-                    "type": "image",
-                    "source": {
-                        "type": "base64",
-                        "media_type": "image/jpeg",
-                        "data": base64_data
+                    "type": "image_url",
+                    "image_url": {
+                        "url": f"data:image/jpeg;base64,{base64_data}"
                     }
                 }
         except Exception as e:
