@@ -4,6 +4,7 @@ from browser_use.browser.browser import Browser, BrowserConfig
 from browser_use.browser.context import BrowserContextConfig
 from langchain_anthropic import ChatAnthropic
 from langchain_openai import ChatOpenAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 import asyncio
 from dotenv import load_dotenv
 from auth_manager import SecureAuthManager
@@ -118,8 +119,19 @@ def create_llm(llm_config):
         }
         return ChatOpenAI(**openai_params)
     
+    elif provider == 'gemini':
+        # Check for Gemini API key
+        if not os.getenv('GEMINI_API_KEY'):
+            raise ValueError("GEMINI_API_KEY environment variable is required for Gemini provider")
+        
+        gemini_params = {
+            'model': model,
+            **common_params
+        }
+        return ChatGoogleGenerativeAI(**gemini_params)
+    
     else:
-        raise ValueError(f"Unsupported LLM provider: {provider}. Supported providers: 'anthropic', 'openai'")
+        raise ValueError(f"Unsupported LLM provider: {provider}. Supported providers: 'anthropic', 'openai', 'gemini'")
 
 async def run_tasks(browser_config, context_config, llm_config, tasks_file, agent_config, auth_manager_config):
     load_dotenv()

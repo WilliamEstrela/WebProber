@@ -160,10 +160,11 @@ Here's the step-by-step trajectory:
             
             # Add step information
             step_text = f"""
-Step {step['step_number']}:
-Evaluation: {step['evaluation']}
-Next Goal: {step['next_goal']}
-Action: {step['action']}
+Passo (Step) {step['step_number']}:
+Caminho da Imagem (Image Path): ../{step['screenshot_path']}
+Avaliação (Evaluation): {step['evaluation']}
+Próximo Objetivo (Next Goal): {step['next_goal']}
+Ação (Action): {step['action']}
 {'-' * 80}
 """
             step_content.append({
@@ -182,18 +183,19 @@ Action: {step['action']}
             "content": [{
                 "type": "text",
                 "text": """
-Based on the above trajectory, please provide:
-1. A summary of any bugs or glitches identified
-2. The specific steps where issues occurred
-3. The nature of each issue (feature bug, visual glitch, etc.)
-4. Any patterns or recurring problems
-5. Recommendations for fixing the identified issues
+Com base na trajetória acima, por favor forneça um relatório em PORTUGUÊS:
+1. Um resumo de quaisquer bugs ou falhas identificadas
+2. Os passos específicos onde os problemas ocorreram
+3. A natureza de cada problema (bug de funcionalidade, falha visual, etc.)
+4. Quaisquer padrões ou problemas recorrentes
+5. Recomendações para corrigir os problemas identificados
 
-For each identified issue, please specify:
-- The step number where it occurred
-- Whether it's a feature bug or visual glitch
-- The severity of the issue
-- The expected behavior vs actual behavior
+Para CADA problema identificado, você DEVE especificar:
+- O número do passo onde ocorreu
+- Se é um bug de funcionalidade ou falha visual
+- A severidade do problema
+- O comportamento esperado vs comportamento real
+- A PRINT (captura de tela) exata do erro, usando a formatação markdown de imagem com o 'Caminho da Imagem' fornecido no passo correspondente. Exemplo: `![Erro no passo X](../agent_screenshots/agent_screenshots_Task/step_XXX.png)`
 """
             }]
         })

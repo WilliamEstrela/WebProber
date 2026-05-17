@@ -16,7 +16,8 @@ context:
     - "clipboard-write"
   # Set allowed_domains to None to allow all domains
   # You can use any of these formats:
-  allowed_domains: null  # YAML null
+  allowed_domains:
+    - "bugbank.netlify.app"
   # 
   # Or set specific domains:
   # allowed_domains:
@@ -28,9 +29,9 @@ context:
 
 # LLM configuration
 llm:
-  # Choose your provider: "openai" or "anthropic"
-  provider: "openai"
-  model: "gpt-4o-mini"
+  # Choose your provider: "openai" or "anthropic" or "gemini"
+  provider: "gemini"
+  model: "gemini-2.5-flash"
   temperature: 1.0  # Controls randomness in responses (0.0 = deterministic, 1.0 = creative)
   max_tokens: 1000  # Maximum tokens in response (null = use model default)
   
